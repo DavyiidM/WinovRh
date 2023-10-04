@@ -27,4 +27,9 @@ export default defineConfig({
             '@':'/resources/js/src'
         },
     },
+    server: {
+        hmr: {
+            host: 'localhost',
+        },
+    },
 });

@@ -7,6 +7,10 @@ const routes = [
     {
         path:'/admin',
         component: Dashboard,
+    },
+    {
+        path:'/admin/candidatos',
+        component: Dashboard,
     }
 ];
 
