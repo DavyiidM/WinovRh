@@ -1,17 +1,29 @@
 import {createRouter, createWebHistory} from 'vue-router'
 
+import Layout from '@/layouts/DashboardLayout.vue'
 import Dashboard from "@/views/Dashboard.vue";
+import CategoryIndex from '@/views/categories/Index.vue'
 
 
 const routes = [
     {
         path:'/admin',
-        component: Dashboard,
+        component: Layout,
+        children:[
+            {
+                path:'',
+                name:'admin.index',
+                component: Dashboard,
+            },
+
+            {
+                path:'categorias',
+                name: 'admin.categories.index',
+                component: CategoryIndex,
+            },
+        ]
     },
-    {
-        path:'/admin/candidatos',
-        component: Dashboard,
-    }
+   
 ];
 
 const router = createRouter({

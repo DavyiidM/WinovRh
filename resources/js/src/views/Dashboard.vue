@@ -6,6 +6,8 @@ import RecentSales from '@/components/dashboard/RecentSales.vue'
 import Search from '@/components/dashboard/Search.vue'
 import TeamSwitcher from '@/components/dashboard/TeamSwitcher.vue'
 import UserNav from '@/components/dashboard/UserNav.vue'
+import {onMounted} from 'vue'
+import axios from '@/plugins/axios'
 
 import { Button } from '@/components/ui/button'
 import {
@@ -21,6 +23,14 @@ import {
   TabsList,
   TabsTrigger,
 } from '@/components/ui/tabs'
+
+
+onMounted(async ()=>{
+  await axios.get('/recruiters/vacancies')
+  .then(response => console.log({response}))
+  .catch(e => console.log({ error: e }))
+})
+
 </script>
 
 <template>

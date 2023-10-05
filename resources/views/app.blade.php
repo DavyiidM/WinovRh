@@ -8,7 +8,7 @@
     <title>WinovRH</title>
     @vite('resources/css/app.css')
 </head>
-<body>
+<body class="relative">
 
 <div id="app"></div>
 @vite('resources/js/app.js')
