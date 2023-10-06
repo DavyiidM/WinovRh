@@ -9,7 +9,7 @@ import UserNav from '@/components/dashboard/UserNav.vue'
 </script>
 
 <template>
-  <div class="md:hidden">
+  <div class="">
     <VPImage
       alt="Dashboard"
       width="1280"
@@ -20,7 +20,7 @@ import UserNav from '@/components/dashboard/UserNav.vue'
     />
   </div>
 
-  <div class="hidden flex-col md:flex">
+  <div class="flex-col flex">
     <div class="border-b">
       <div class="flex h-16 items-center px-4">
         <TeamSwitcher />
@@ -32,7 +32,6 @@ import UserNav from '@/components/dashboard/UserNav.vue'
       </div>
     </div>
     <div class="flex-1 space-y-4 p-8 pt-6">
-      
     <router-view/>
     </div>
   </div>

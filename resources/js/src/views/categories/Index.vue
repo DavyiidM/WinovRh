@@ -1,30 +1,40 @@
 <script setup lang="ts">
 import {onMounted, ref} from 'vue'
 import Header from '@/components/dashboard/Header.vue'
-import {Button} from '@/components/ui/button'
 import DrawerStoreCategory from './components/DrawerStoreCategory.vue'
-import axios from '@/plugins/axios'
+import {useCategory} from '@/services/categories'
 
-const categories = ref([])
+const {index, store: storeService} = useCategory()
 
-onMounted(async ()=>{
-  await axios.get('recruiters/categories').then(response=>{
-   categories.value = response.data.data
-  })
+const {categories, getCategories} = index()
+
+const {store, formData, category} = storeService()
+
+const storeCategory = async (params) => {
+  try{
+    formData.value.name = params.name
+    await store()
+
+    categories.value.push(category.value)
+    category.value = null
+    // notificação...
+    // fechar o drawer de cadastro.
+  }catch(e){
+    console.log('Xi... Deu ruim...')
+  }
+}
+
+onMounted(async () => {
+  await getCategories()
 })
 
-const store = async (params) =>{
-  await axios.post('recruiters/categories', params)
-  .then(response => categories.value.push(response.data.data))
-  .catch(e=> alert('Xi... Deu ruim...'))
-}
 
 </script>
 <template>
   <div class="">
     <Header title="Categorias">
       <template #options>
-        <DrawerStoreCategory @submit="store"/>
+        <DrawerStoreCategory @submit="storeCategory"/>
       </template>
     </Header>
 
