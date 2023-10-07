@@ -6,17 +6,30 @@ import { Label } from '@/components/ui/label'
 import {Drawer} from  '@/components/ui/drawer'
 
 const formData = ref({
-    name:''
+    name: ''
 })
 
 const emit = defineEmits(['submit'])
 const submit = ()=> emit('submit', {...formData.value})
+const drawerEl = ref(null)
+
+const toggle = () => drawerEl.value.toggle()
+const formEl = ref(null)
+
+defineExpose({
+  toggle
+})
+
+const reset = () => {
+  formData.value.name = ''
+  formEl.value.reset()
+}
 
 </script>
 
 <template>
-  <Drawer title="Cadastrar Categoria" btn-text="Nova Categoria">
-    <form @submit.prevent="submit" class="space-y-4">
+  <Drawer ref="drawerEl" title="Cadastrar Categoria" btn-text="Nova Categoria" @close="reset">
+    <form @submit.prevent="submit" ref="formEl" class="space-y-4">
         <div class="space-y-2">
             <Label>Nome da Categoria</Label>
             <Input type="text" name="name" v-model="formData.name"/>

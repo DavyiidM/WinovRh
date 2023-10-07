@@ -1,45 +1,78 @@
 <script setup lang="ts">
-import {onMounted, ref} from 'vue'
+import {onMounted, ref, watch} from 'vue'
 import Header from '@/components/dashboard/Header.vue'
 import DrawerStoreCategory from './components/DrawerStoreCategory.vue'
 import {useCategory} from '@/services/categories'
+import {Card, CardTitle, CardDescription} from "@/components/ui/card";
+import {Pagination} from '@/components/ui/pagination'
+
+import {useToast} from 'vue-toastification'
 
 const {index, store: storeService} = useCategory()
 
-const {categories, getCategories} = index()
+const {categories, getCategories, meta, currentPage, perPage, perPageOptions} = index()
 
 const {store, formData, category} = storeService()
 
+const toast = useToast()
+
+const drawerEl = ref(null)
+
 const storeCategory = async (params) => {
-  try{
+  try {
     formData.value.name = params.name
     await store()
-
     categories.value.push(category.value)
     category.value = null
-    // notificação...
-    // fechar o drawer de cadastro.
-  }catch(e){
-    console.log('Xi... Deu ruim...')
+    drawerEl.value.toggle()
+    toast.success('Categoria Cadastrada com Sucesso.')
+  } catch (e) {
+    toast.error('Opsss... Erro ao cadastrar esta categoria')
   }
 }
 
 onMounted(async () => {
   await getCategories()
+  console.log({meta})
 })
 
+const pageUpdated = (pg) => currentPage.value = pg
 
 </script>
 <template>
   <div class="">
     <Header title="Categorias">
       <template #options>
-        <DrawerStoreCategory @submit="storeCategory"/>
+        <DrawerStoreCategory ref="drawerEl" @submit="storeCategory"/>
       </template>
     </Header>
-
-    <ul>
-      <li class="" v-for="category in categories" :key="category.id">{{ category.name }}</li>
-    </ul>
+    <div class="mt-4 grid grid-cols-12 gap-4">
+      <div class="col-span-12 md:col-span-6 lg:col-span-4" v-for="c in categories" :key="c">
+        <Card class="p-6">
+          <CardTitle class="lg:text-lg text-sm">{{ c.name }}</CardTitle>
+          <CardDescription v-if="c.vacancies_count">{{ c.vacancies_count }} vagas ativas</CardDescription>
+          <CardDescription v-else>Nenhuma vaga ativa atrelada</CardDescription>
+        </Card>
+      </div>
+    </div>
+    <div class="flex items-center justify-between">
+      <div class="">
+        <select v-model="perPage" name="opa" id="opa">
+          <option
+              v-for="pPage in perPageOptions"
+              :key="pPage"
+              :value="pPage">{{ pPage }} registros por página</option>
+        </select>
+      </div>
+      <div class="py-4">
+        <Pagination
+            v-if="meta"
+            :page="meta.current_page"
+            :items-per-page="perPage"
+            :total="meta.total"
+            @updatePage="pageUpdated"
+        />
+      </div>
+    </div>
   </div>
 </template>

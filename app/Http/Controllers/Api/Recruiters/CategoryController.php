@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api\Recruiters;
 
+use App\Enums\VacancyStatusEnum;
 use App\Exceptions\NotFoundException;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CategoryRequest;
@@ -18,6 +19,9 @@ class CategoryController extends Controller
     public function index()
     {
         $categories = QueryBuilder::for(Category::class)
+            ->withCount(['vacancies' => function ($vacancy) {
+                $vacancy->whereHas('status', fn($status) => $status->where('status', VacancyStatusEnum::OPEN));
+            }])
             ->allowedIncludes('vacancies')
             ->paginate(
                 perPage: \request('per_page', 15),
