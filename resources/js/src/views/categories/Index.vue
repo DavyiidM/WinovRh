@@ -1,10 +1,20 @@
 <script setup lang="ts">
-import {onMounted, ref, watch} from 'vue'
+import {onMounted, ref} from 'vue'
 import Header from '@/components/dashboard/Header.vue'
 import DrawerStoreCategory from './components/DrawerStoreCategory.vue'
 import {useCategory} from '@/services/categories'
 import {Card, CardTitle, CardDescription} from "@/components/ui/card";
 import {Pagination} from '@/components/ui/pagination'
+
+import {
+  Select,
+  SelectContent,
+
+  SelectItem,
+
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select'
 
 import {useToast} from 'vue-toastification'
 
@@ -33,10 +43,7 @@ const storeCategory = async (params) => {
 
 onMounted(async () => {
   await getCategories()
-  console.log({meta})
 })
-
-const pageUpdated = (pg) => currentPage.value = pg
 
 </script>
 <template>
@@ -55,14 +62,20 @@ const pageUpdated = (pg) => currentPage.value = pg
         </Card>
       </div>
     </div>
+
+    <!--  Paginação completa  -->
     <div class="flex items-center justify-between">
       <div class="">
-        <select v-model="perPage" name="opa" id="opa">
-          <option
-              v-for="pPage in perPageOptions"
-              :key="pPage"
-              :value="pPage">{{ pPage }} registros por página</option>
-        </select>
+        <Select v-model="perPage">
+          <SelectTrigger >
+            <SelectValue placeholder="Selecione uma quantidade" />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectItem v-for="pPage in perPageOptions" :value="pPage">
+              {{pPage}} por página
+            </SelectItem>
+          </SelectContent>
+        </Select>
       </div>
       <div class="py-4">
         <Pagination
@@ -70,7 +83,7 @@ const pageUpdated = (pg) => currentPage.value = pg
             :page="meta.current_page"
             :items-per-page="perPage"
             :total="meta.total"
-            @updatePage="pageUpdated"
+            @updatePage="pg=>currentPage = pg"
         />
       </div>
     </div>
