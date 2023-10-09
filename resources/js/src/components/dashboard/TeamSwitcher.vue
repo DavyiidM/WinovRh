@@ -68,7 +68,12 @@ const selectedTeam = ref<Team>(groups[0].teams[0])
 
 <template>
   <Dialog v-model:open="showNewTeamDialog">
-    <Popover v-model:open="open">
+    <div class="flex static bg-foregroun border-white border- w-40  mx-4  ">
+      <!-- <img src="https://www.winov.com.br/wp-content/uploads/2021/05/Logo-Winov.svg" alt=""> -->
+      <!-- <img src="https://winov.com.br/wp-content/uploads/2022/08/Simbol_white_BG_RGB.png" alt=""> -->
+      <img src="https://winov.com.br/wp-content/uploads/2022/08/Logo_white_BG_RGB.png" alt="">
+    </div>
+    <!-- <Popover v-model:open="open">
       <PopoverTrigger as-child>
         <Button
           variant="outline"
@@ -188,6 +193,6 @@ const selectedTeam = ref<Team>(groups[0].teams[0])
           Continue
         </Button>
       </DialogFooter>
-    </DialogContent>
+    </DialogContent> -->
   </Dialog>
 </template>

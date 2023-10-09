@@ -7,7 +7,7 @@ import { cn } from '@/lib/utils'
     :class="cn('flex items-center space-x-4 lg:space-x-6', $attrs.class ?? '')"
   >
     <a
-      href="/examples/dashboard"
+      href="/admin"
       class="text-sm font-medium transition-colors hover:text-primary"
     >
       Dashboard
@@ -19,13 +19,13 @@ import { cn } from '@/lib/utils'
       Candidatos
     </a>
     <a
-      href="/examples/dashboard"
+      href="/admin/vagas"
       class="text-sm font-medium text-muted-foreground transition-colors hover:text-primary"
     >
       Vagas
     </a>
     <a
-      href="/examples/dashboard"
+      href="/admin/categorias"
       class="text-sm font-medium text-muted-foreground transition-colors hover:text-primary"
     >
       Categorias

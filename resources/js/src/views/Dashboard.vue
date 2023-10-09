@@ -26,7 +26,7 @@ onMounted(async ()=>{
 </script>
 
 <template>
-    <Header title="Dasboard">
+    <Header title="Dashboard">
         <template #options>
 
         </template>

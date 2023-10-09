@@ -17,7 +17,7 @@ import {
         <p class="text-sm font-medium leading-none">
           Tecnologia
         </p>
-        <p class="text-sm text-muted-foreground">
+        <p class="text-sm text-foreground">
           Desenvolvedor PHP Pleno
         </p>
       </div>
@@ -34,7 +34,7 @@ import {
         <p class="text-sm font-medium leading-none">
           Recursos Humanos
         </p>
-        <p class="text-sm text-muted-foreground">
+        <p class="text-sm text-foreground">
           Assistente Administrativo 
         </p>
       </div>
@@ -51,7 +51,7 @@ import {
         <p class="text-sm font-medium leading-none">
           Comercial
         </p>
-        <p class="text-sm text-muted-foreground">
+        <p class="text-sm text-foreground">
           Assessor Comercial
         </p>
       </div>
@@ -68,7 +68,7 @@ import {
         <p class="text-sm font-medium leading-none">
           Comercial
         </p>
-        <p class="text-sm text-muted-foreground">
+        <p class="text-sm text-foreground">
           SDR 
         </p>
       </div>
@@ -85,7 +85,7 @@ import {
         <p class="text-sm font-medium leading-none">
           Tecnologia
         </p>
-        <p class="text-sm text-muted-foreground">
+        <p class="text-sm text-foreground">
           Analista de Dados Sênior
         </p>
       </div>

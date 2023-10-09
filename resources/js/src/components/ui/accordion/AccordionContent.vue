@@ -15,7 +15,7 @@ const props = defineProps<AccordionContentProps & { class?: string }>()
       )
     "
   >
-    <div class="pb-4 pt-0">
+    <div class="pb-4 pt-0 ">
       <slot />
     </div>
   </AccordionContent>
