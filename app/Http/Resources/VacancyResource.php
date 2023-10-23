@@ -20,5 +20,6 @@ class VacancyResource extends JsonResource
             'subtitle' => $this ->subtitle,
             'expires_at'=> $this ->expires_at,
         ];
+        
     }
 }

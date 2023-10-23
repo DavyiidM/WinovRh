@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api\Recruiters;
 
+use App\Enums\VacancyStatusEnum;
 use App\Exceptions\NotFoundException;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreVacancyRequest;
@@ -20,6 +21,9 @@ class VacancyController extends Controller
     public function index()
     {
         $vacancies = QueryBuilder::for(Vacancy::class)
+        // ->withCount(['vacancies' => function ($vacancy) {
+        //     $vacancy->whereHas('status', fn($status) => $status->where('status', VacancyStatusEnum::OPEN));
+        // }])
             ->allowedIncludes([
                 'candidates',
                 'categories',

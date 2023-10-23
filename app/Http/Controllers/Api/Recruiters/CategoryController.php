@@ -19,9 +19,9 @@ class CategoryController extends Controller
     public function index()
     {
         $categories = QueryBuilder::for(Category::class)
-            ->withCount(['vacancies' => function ($vacancy) {
-                $vacancy->whereHas('status', fn($status) => $status->where('status', VacancyStatusEnum::OPEN));
-            }])
+            // ->withCount(['vacancies' => function ($vacancy) {
+            //     $vacancy->whereHas('status', fn($status) => $status->where('status', VacancyStatusEnum::OPEN));
+            // }])
             ->allowedIncludes('vacancies')
             ->paginate(
                 perPage: \request('per_page', 15),

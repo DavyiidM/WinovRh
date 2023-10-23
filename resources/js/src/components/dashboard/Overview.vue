@@ -1,4 +1,6 @@
 <script setup lang="ts">
+
+// import Vue from "@unovis/vue";
 // import { VisAxis, VisStackedBar, VisXYContainer } from '@unovis/vue'
 
 type Data = typeof data[number]
