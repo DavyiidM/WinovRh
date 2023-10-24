@@ -4,7 +4,7 @@ import VacancyInterface from "./vacancy.interface";
 
 export default function (): Object {
     const vacancy = ref<VacancyInterface | null>(null)
-    const formData = ref({name: ''})
+    const formData = ref({name: '',categoryId: null,})
 
     const store = async () => {
         await axios.post('/recruiters/vacancies', formData.value)

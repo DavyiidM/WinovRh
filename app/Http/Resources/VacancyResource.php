@@ -16,6 +16,7 @@ class VacancyResource extends JsonResource
     {
         return [
             'title' => $this->title,
+            'description' => $this->description,
             'slug' => $this->slug,
             'subtitle' => $this ->subtitle,
             'expires_at'=> $this ->expires_at,

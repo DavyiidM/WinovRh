@@ -1,5 +1,5 @@
 import axios from '@/plugins/axios.js'
-import {onMounted, ref, watch} from 'vue'
+import { onMounted, ref, watch } from 'vue'
 import VacancyInterface from "./vacancy.interface";
 
 
@@ -8,7 +8,7 @@ export default function (): Object {
     const meta = ref()
     const currentPage = ref(1)
     const perPage = ref(20)
-const perPageOptions = [5,10,15,30]
+    const perPageOptions = [5, 10, 15, 30]
     const getVacancies = async () => {
 
         const params = new URLSearchParams({
@@ -16,7 +16,7 @@ const perPageOptions = [5,10,15,30]
             per_page: perPage.value
         })
 
-        await axios.get('/recruiters/vacancies?'+params)
+        await axios.get('/recruiters/vacancies?' + params)
             .then((response) => {
                 vacancies.value = response.data.data
                 meta.value = response.data.meta

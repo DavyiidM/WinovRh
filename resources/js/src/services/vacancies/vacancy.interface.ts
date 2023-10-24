@@ -4,7 +4,7 @@ export default interface VacancyInterface {
     title: string,
     subtitle: string,
     slug:  string,
-    description: string,
+    description: longText,
     expires_at: string,    
     created_at: string,
 }

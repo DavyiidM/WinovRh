@@ -22,10 +22,10 @@ class UpdateVacancyRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'title' => 'nullable|unique:vacancies,title',
-            'subtitle' => 'nullable',
+            'title' => 'required|unique:vacancies,title',
+            'subtitle' => 'required',
             'description' => 'required',
-            'expires_at' => 'nullable|date|after_or_equal:' . now()->format('Y-m-d'),
+            'expires_at' => 'required|date|after_or_equal:' . now()->format('Y-m-d'),
         ];
     }
 }
