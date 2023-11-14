@@ -15,10 +15,12 @@ class CandidateResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
+            'id'=>$this->id,
             'name' => $this->name,
             'vacancies' => $this->whenLoaded(
                 'vacancies',
-                fn() => VacancyResource::collection($this->vacancies)
+                fn() => VacancyResource::collection($this->vacancies),
+                fn()=>[]
             ),
             'email' => $this->email,
             'password' => $this->password,

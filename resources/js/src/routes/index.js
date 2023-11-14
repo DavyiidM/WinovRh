@@ -4,7 +4,8 @@ import Layout from '@/layouts/DashboardLayout.vue'
 import Dashboard from "@/views/Dashboard.vue";
 import CategoryIndex from '@/views/categories/Index.vue'
 import VacancyIndex from '@/views/vacancies/Index.vue'
-
+import CandidatesIndex from '@/views/candidates/Index.vue'
+import CandidatesShow from '@/views/candidates/Show.vue'
 
 const routes = [
     {
@@ -27,6 +28,17 @@ const routes = [
                 name: 'admin.vacancies.index',
                 component: VacancyIndex,
             },
+            {
+                path: 'candidatos',
+                name: 'admin.candidates.index',
+                component:CandidatesIndex,
+               
+            },
+            {
+                path: 'candidatos/:uuid',
+                name:'admin.candidates.show',
+                component: CandidatesShow
+            }
         ]
     },
    

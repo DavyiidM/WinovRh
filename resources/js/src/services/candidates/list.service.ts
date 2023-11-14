@@ -1,24 +1,24 @@
 import axios from '@/plugins/axios.js'
 import { onMounted, ref, watch } from 'vue'
-import CategoryInterface from "./category.interface";
+import CandidateInterface from "./candidate.interface";
 
 
 export default function (): Object {
-    const categories = ref<CategoryInterface[] | null>(null)
+    const candidates = ref<CandidateInterface[] | null>(null)
     const meta = ref()
     const currentPage = ref(1)
     const perPage = ref(20)
     const perPageOptions = [5, 10, 15, 30]
-    const getCategories = async () => {
+    const getCandidates = async () => {
 
         const params = new URLSearchParams({
             page: currentPage.value,
             per_page: perPage.value
         })
 
-        await axios.get('/recruiters/categories?' + params)
+        await axios.get('/recruiters/candidates?' + params)
             .then((response) => {
-                categories.value = response.data.data
+                candidates.value = response.data.data
                 meta.value = response.data.meta
             }).catch(err => console.log(err))
     }
@@ -29,12 +29,12 @@ export default function (): Object {
 
     watch(
         [currentPage, perPage],
-        async () => getCategories()
+        async () => getCandidates()
     )
 
     return {
-        categories,
-        getCategories,
+        candidates,
+        getCandidates,
         meta,
         currentPage,
         perPage,

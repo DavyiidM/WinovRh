@@ -106,6 +106,7 @@ onMounted(async () => {
             <AlertDialogContent>
               <AlertDialogHeader>
                 <AlertDialogTitle>{{ c.title }} {{ c.subtitle }}</AlertDialogTitle>
+                <AlertDialogTitle>{{ c.expires_at }}</AlertDialogTitle>
                 <AlertDialogDescription>
                   <AlertDialogTitle>Requisitos</AlertDialogTitle>
                   {{ c.description }}

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api\Recruiters;
 
+use App\Exceptions\NotFoundException;
 use App\Http\Controllers\Controller;
 use App\Models\Candidate;
 use Illuminate\Http\Request;
@@ -31,7 +32,7 @@ class CandidateController extends Controller
      */
     public function show(string $id)
     {
-        $candidate = Candidate::findOr($id, fn() => response()->json(['message' => 'Not Found'], 404));
+        $candidate = Candidate::findOr($id, fn() => throw new NotFoundException('Resource not Found'));
 
         return (new CandidateResource($candidate))->response();
     }

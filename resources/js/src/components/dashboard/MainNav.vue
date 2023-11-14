@@ -13,7 +13,7 @@ import { cn } from '@/lib/utils'
       Dashboard
     </a>
     <a
-      href="/examples/dashboard"
+      href="/admin/candidatos"
       class="text-sm font-medium text-muted-foreground transition-colors hover:text-primary"
     >
       Candidatos

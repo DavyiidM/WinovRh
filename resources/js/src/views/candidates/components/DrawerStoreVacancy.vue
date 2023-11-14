@@ -81,8 +81,6 @@ const props = defineProps({
         <Input type="text" name="subtitle" v-model="formData.subtitle" />
         <Label>Descrição da Vaga</Label>
         <Input type="text" name="description" v-model="formData.description" />
-        <Label>Data de expiração</Label>
-        <Input type="text" name="expires_at" v-model="formData.expires_at" />
 
       </div>
      
