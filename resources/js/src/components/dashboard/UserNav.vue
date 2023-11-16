@@ -18,7 +18,7 @@ import {
 </script>
 
 <template>
-  <DropdownMenu>
+  <!-- <DropdownMenu>
     <DropdownMenuTrigger as-child>
       <Button variant="ghost" class="relative h-8 w-8 rounded-full">
         <Avatar class="h-8 w-8">
@@ -60,5 +60,5 @@ import {
         <DropdownMenuShortcut>⇧⌘Q</DropdownMenuShortcut>
       </DropdownMenuItem>
     </DropdownMenuContent>
-  </DropdownMenu>
+  </DropdownMenu> -->
 </template>

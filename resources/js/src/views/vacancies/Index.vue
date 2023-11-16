@@ -42,12 +42,12 @@ import {
   DialogTrigger,
 } from '@/components/ui/dialog'
 
-import {useCategory} from '@/services/categories'
+import { useCategory } from '@/services/categories'
 
 
-const {index:indexCategories} = useCategory()
+const { index: indexCategories } = useCategory()
 
-const {categories, getCategories, perPage:perPageCategories  } = indexCategories()
+const { categories, getCategories, perPage: perPageCategories } = indexCategories()
 
 perPageCategories.value = 1000
 
@@ -81,13 +81,14 @@ onMounted(async () => {
   await getVacancies()
   await getCategories()
 
-  console.log({categories:categories.value})
+  console.log({ categories: categories.value })
 })
 
 </script>
 <template>
   <div class="">
     <Header title="Vagas">
+      
       <template #options>
         <DrawerStoreVacancy :categories="categories" ref="drawerEl" @submit="storeVacancy" />
       </template>
@@ -96,9 +97,9 @@ onMounted(async () => {
       <div class="col-span-12 md:col-span-6 lg:col-span-4" v-for="c in vacancies" :key="c">
         <Card class="p-6">
           <div class="flex justify-between align-start">
-          <CardTitle class="lg:text-lg text-sm">{{ c.title }}</CardTitle>
-          <Switch class="" />
-        </div>
+            <CardTitle class="lg:text-lg text-sm">{{ c.title }}</CardTitle>
+            <Switch class="" />
+          </div>
           <CardDescription class="lg:text-lg text-sm">{{ c.subtitle }}</CardDescription>
 
           <AlertDialog>
@@ -115,18 +116,18 @@ onMounted(async () => {
               <AlertDialogFooter>
                 <Dialog>
                   <DialogTrigger>
-                   <Button>Editar vaga</Button> 
+                    <Button>Editar vaga</Button>
                   </DialogTrigger>
                   <DialogContent>
                     <DialogHeader>
                       <DialogTitle>Editar Vaga</DialogTitle>
                       <DialogDescription>
-                        Faças aqui as devidas alterações e salve !! 
+                        Faças aqui as devidas alterações e salve !!
                       </DialogDescription>
                     </DialogHeader>
 
                     <DialogFooter>
-                      <Button>Salvar</Button> 
+                      <Button>Salvar</Button>
                     </DialogFooter>
                   </DialogContent>
                 </Dialog>

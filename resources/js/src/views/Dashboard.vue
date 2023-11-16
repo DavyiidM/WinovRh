@@ -6,7 +6,7 @@ import RecentSales from '@/components/dashboard/RecentSales.vue'
 import Search from '@/components/dashboard/Search.vue'
 import TeamSwitcher from '@/components/dashboard/TeamSwitcher.vue'
 import UserNav from '@/components/dashboard/UserNav.vue'
-import {onMounted} from 'vue'
+import {onMounted, ref} from 'vue'
 import axios from '@/plugins/axios'
 import Header from '@/components/dashboard/Header.vue'
 
@@ -19,9 +19,36 @@ import {
   CardTitle,
 } from '@/components/ui/card'
 
-onMounted(async ()=>{
+const totalCandidates = ref(0);
+const totalVacancies = ref(0);
+const totalSubscriptions = ref(0);
+const activeVacancies = ref(0);
 
-})
+onMounted(async () => {
+  try {
+
+    const responseCandidates = await axios.get('/recruiters/candidates?');
+    const responseVacancies = await axios.get('/recruiters/vacancies?');
+    const responseSubscriptions = await axios.get('Ds');
+    const responseActiveVacancies = await axios.get('');
+
+    data.totalCandidates = responseCandidates.data.length;
+    data.totalVacancies = responseVacancies.data.length;
+    totalSubscriptions.value = responseSubscriptions.data.total;
+    activeVacancies.value = responseActiveVacancies.data.total;
+  } catch (error) {
+    console.error('Erro ao buscar dados do backend', error);
+  }
+});
+// try {
+//         const responseCandidates = await axios.get('/recruiters/candidates');
+//         data.totalCandidates = responseCandidates.data.length;
+//     } catch (error) {
+//         console.error('Erro ao obter candidatos:', error);
+//     }
+// });
+
+
 
 </script>
 
@@ -53,7 +80,7 @@ onMounted(async ()=>{
             </CardHeader>
             <CardContent>
                 <div class="text-2xl font-bold">
-                    750
+                    {{ totalCandidates }}
                 </div>
                 <p class="text-xs text-muted-foreground">
                     325 Candidatos no último mês
@@ -110,7 +137,7 @@ onMounted(async ()=>{
             </CardHeader>
             <CardContent>
                 <div class="text-2xl font-bold">
-                    8
+                    {{ totalVacancies }}
                 </div>
                 <p class="text-xs text-muted-foreground">
                     3 na última semana

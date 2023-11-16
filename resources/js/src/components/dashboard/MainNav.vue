@@ -30,5 +30,11 @@ import { cn } from '@/lib/utils'
     >
       Categorias
     </a>
+    <a
+      href="/admin"
+      class="text-sm font-medium text-muted-foreground transition-colors hover:text-primary"
+    >
+      Billing
+    </a>
   </nav>
 </template>
