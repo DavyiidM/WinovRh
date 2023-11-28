@@ -29,24 +29,20 @@ onMounted(async () => {
 
     const responseCandidates = await axios.get('/recruiters/candidates?');
     const responseVacancies = await axios.get('/recruiters/vacancies?');
-    const responseSubscriptions = await axios.get('Ds');
+    const responseSubscriptions = await axios.get('/');
     const responseActiveVacancies = await axios.get('');
 
-    data.totalCandidates = responseCandidates.data.length;
-    data.totalVacancies = responseVacancies.data.length;
-    totalSubscriptions.value = responseSubscriptions.data.total;
-    activeVacancies.value = responseActiveVacancies.data.total;
+    totalCandidates.value = responseCandidates.data.meta.total;
+    totalVacancies.value = responseVacancies.data.meta.total;
+    totalSubscriptions.value = responseSubscriptions.data.meta.total;
+    activeVacancies.value = responseActiveVacancies.data.meta.total;
+   
+
   } catch (error) {
     console.error('Erro ao buscar dados do backend', error);
   }
 });
-// try {
-//         const responseCandidates = await axios.get('/recruiters/candidates');
-//         data.totalCandidates = responseCandidates.data.length;
-//     } catch (error) {
-//         console.error('Erro ao obter candidatos:', error);
-//     }
-// });
+
 
 
 
@@ -83,7 +79,7 @@ onMounted(async () => {
                     {{ totalCandidates }}
                 </div>
                 <p class="text-xs text-muted-foreground">
-                    325 Candidatos no último mês
+                    <!-- 325 Candidatos no último mês -->
                 </p>
             </CardContent>
         </Card>
@@ -109,10 +105,10 @@ onMounted(async () => {
             </CardHeader>
             <CardContent>
                 <div class="text-2xl font-bold">
-                    635 Inscritos
+                 Em breve (Inscritos) {{ totalSubscriptions }}
                 </div>
                 <p class="text-xs text-muted-foreground">
-                    230 no último mês
+                    <!-- 230 no último mês -->
                 </p>
             </CardContent>
         </Card>
@@ -140,7 +136,7 @@ onMounted(async () => {
                     {{ totalVacancies }}
                 </div>
                 <p class="text-xs text-muted-foreground">
-                    3 na última semana
+                    <!-- 3 na última semana -->
                 </p>
             </CardContent>
         </Card>
@@ -164,10 +160,10 @@ onMounted(async () => {
             </CardHeader>
             <CardContent>
                 <div class="text-2xl font-bold">
-                    1
+                    {{activeVacancies}}
                 </div>
                 <p class="text-xs text-muted-foreground">
-                    Há 17h ativa
+                    <!-- Há 17h ativa -->
                 </p>
             </CardContent>
         </Card>
@@ -185,7 +181,7 @@ onMounted(async () => {
             <CardHeader>
                 <CardTitle>Vagas Recentes</CardTitle>
                 <CardDescription>
-                    Você Abriu 8 vagas no útimo mês.
+                    Você Abriu {{totalVacancies}} vagas no útimo mês.
                 </CardDescription>
             </CardHeader>
             <CardContent>

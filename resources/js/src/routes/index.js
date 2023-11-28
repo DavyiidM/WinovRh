@@ -7,6 +7,7 @@
     import CandidatesIndex from '@/views/candidates/Index.vue'
     import CandidatesShow from '@/views/candidates/Show.vue'
     import Register from '@/views/vacancies/Register.vue';
+    import Teste from '@/views/vacancies/Teste.vue';
 
 
     const routes = [
@@ -45,6 +46,11 @@
                     path: '/admin/register',
                     name:'admin.vacancies.register',
                     component: Register,
+                },
+                {
+                    path: '/admin/teste',
+                    name:'admin.vacancies.teste',
+                    component: Teste,
                 }
             ]
         },

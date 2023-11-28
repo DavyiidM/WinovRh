@@ -1,7 +1,7 @@
 <script setup lang="ts">
 
 // import Vue from "@unovis/vue";
-// import { VisAxis, VisStackedBar, VisXYContainer } from '@unovis/vue'
+import { VisAxis, VisStackedBar, VisXYContainer } from '@unovis/vue'
 
 type Data = typeof data[number]
 const data = [
@@ -21,7 +21,7 @@ const data = [
 </script>
 
 <template>
-  <!-- <VisXYContainer height="350px" :margin="{ left: 20, right: 20 }" :data="data">
+  <VisXYContainer height="350px" :margin="{ left: 20, right: 20 }" :data="data">
     <VisStackedBar
       :x="(d: Data, i: number) => i"
       :y="(d: Data) => d.total"
@@ -44,5 +44,5 @@ const data = [
       :tick-line="false"
       :domain-line="false" color="#888888"
     />
-  </VisXYContainer> -->
+  </VisXYContainer>
 </template>

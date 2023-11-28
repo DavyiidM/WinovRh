@@ -1,97 +1,105 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { onMounted, ref } from 'vue'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
-import { Drawer } from '@/components/ui/drawer'
-//import CategoryInterface from  '@/services/categories/category.interface'
 import Header from '@/components/dashboard/Header.vue'
-
+import VacancyService from '@/services/vacancies/store.service';
 import {
-    Select,
-    SelectContent,
-    SelectGroup,
-    SelectItem,
-    SelectLabel,
-    SelectTrigger,
-    SelectValue,
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectLabel,
+  SelectTrigger,
+  SelectValue,
 } from '@/components/ui/select'
 
-const formData = ref({
-    name: '',
-    title: '',
-    subtitle: '',
-    description: '',
-    category_id: ''
-})
+import { useCategory } from '@/services/categories'
+import { useToast } from 'vue-toastification'
 
-const emit = defineEmits(['submit'])
+import AppTextEditor from '@/components/ui/editor/AppTextEditor.vue';
 
-const submit = () => {
-    const data = {
-        ...formData.value,
-        categoryId: formData.categoryId,
-    };
-    emit('submit', data);
-    reset();
-};
+const { formData, store } = VacancyService();
 
+const { index: indexCategories } = useCategory()
 
-const registerEl = ref(null)
+const { categories, getCategories, perPage: perPageCategories } = indexCategories()
 
-const toggle = () => drawerEl.value.toggle()
-const formEl = ref(null)
+perPageCategories.value = 1000
 
-defineExpose({
-    toggle
-})
+const toast = useToast()
 
 const reset = () => {
-    formData.value.name = ''
-    formEl.value.reset()
+  formData.value.category_id = ''
+  formData.value.title = ''
+  formData.value.subtitle = ''
+  formData.value.expires_at = ''
+  formData.value.description = ''
 }
 
 const props = defineProps({
-    categories: {
-        type: [Array, null],
-        default: () => [],
-    }
+  categories: {
+    type: [Array, null],
+    default: () => [],
+  }
+})
+
+const storeVacancy = async () => {
+  try {
+    // console.log(e.target.title.value)
+    // console.log(data)
+    await store()
+    reset()
+    toast.success('Vaga Cadastrada com Sucesso.')
+  } catch (e) {
+    console.log(e)
+    toast.error('Opsss... Erro ao cadastrar esta Vaga')
+  }
+}
+
+onMounted(async () => {
+  await getCategories()
+  console.log({ categories: categories.value })
 })
 
 </script>
 
 <template>
-    <Header title="Cadastro de vagas">
-    </Header>
-    <div ref="registerEl" title="Cadastrar Vagas" btn-text="Nova Vaga" @close="reset">
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@2.2.0/fonts/remixicon.css" rel="stylesheet">
 
-        <form @submit.prevent="submit" ref="formEl" class="space-y-4">
+  <Header title="Cadastro de vagas">
+  </Header>
+  <div title="Cadastrar Vagas" btn-text="Nova Vaga">
 
-            <div class="space-y-2">
-                <Label>Categoria da Vaga</Label>
-                <Select v-model="formData.category_id">
-                    <SelectTrigger>
-                        <SelectValue placeholder="Selecione uma categoria" />
-                    </SelectTrigger>
-                    <SelectContent>
-                        <SelectItem v-for="category in categories" :value="category.id">
-                            {{ category.name }}
-                        </SelectItem>
-                    </SelectContent>
-                </Select>
+    <form @submit.prevent="storeVacancy" class="space-y-4">
 
-                <Label>Nome da Vaga</Label>
-                <Input type="text" name="title" v-model="formData.title" />
-                <Label>Subtitulo</Label>
-                <Input type="text" name="subtitle" v-model="formData.subtitle" />
-                <Label>Descrição da Vaga</Label>
-                <Input type="text" name="description" v-model="formData.description" />
-                <Label>Data de expiração</Label>
-                <Input type="text" name="expires_at" v-model="formData.expires_at" />
+      <div class="space-y-2">
+        <Label>Categoria da Vaga</Label>
+        <Select v-model="formData.category_id">
+          <SelectTrigger>
+            <SelectValue placeholder="Selecione uma categoria" />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectItem v-for="category in categories" :value="category.id">
+              {{ category.name }}
+            </SelectItem>
+          </SelectContent>
+        </Select>
 
-            </div>
+        <Label>Nome da Vaga</Label>
+        <Input type="text" name="title" v-model="formData.title" />
+        <Label>Subtitulo</Label>
+        <Input type="text" name="subtitle" v-model="formData.subtitle" />
+        <Label>Data de expiração</Label>
+        <Input type="text" name="expires_at" v-model="formData.expires_at" />
+        <Label>Description</Label>
+        
+        <AppTextEditor  v-model="formData.description" :max-limit="10000" />
+        
+      </div>
 
-            <Button class="w-full" type="submit">Cadastrar</Button>
-        </form>
-    </div>
+      <Button class="w-full" type="submit">Cadastrar</Button>
+    </form>
+  </div>
 </template>

@@ -7,7 +7,7 @@ module.exports = {
     "./storage/framework/views/*.php",
     "./resources/views/**/*.blade.php",
     "./resources/js/**/*.{ts,tsx,vue}",
-    // "./resources/js/src/**/*.{ts,tsx,vue}",
+    "./resources/js/src/**/*.{ts,tsx,vue}",
   ],
 
   theme: {
@@ -72,6 +72,9 @@ module.exports = {
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
+      },
+      hover:  {
+        hover: "hsl(var(--hover))", 
       },
     },
   },

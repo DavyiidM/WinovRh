@@ -14,9 +14,15 @@ class RecruiterSeeder extends Seeder
     public function run(): void
     {
         Recruiter::create([
-            'name' => 'Sergio Danilo Jr.',
-            'email' => 'sergiodanilojr@email.com',
-            'password' => 'password',
+            'name' => 'Cintia Oliveira',
+            'email' => 'cintia.oliveira@winov.com.br',
+            'password' => 'recrutamento2024',
+
+        ]);
+        Recruiter::create([
+            'name' => 'David Mendes',
+            'email' => 'david.mendes@winov.com.br',
+            'password' => 'admin2024',
 
         ]);
     }

@@ -21,6 +21,8 @@
 
     --primary: 86, 95%, 37%;
     --primary-foreground: 0 0% 98%;
+    
+
 
     --secondary: 240 4.8% 95.9%;
     --secondary-foreground: 240 5.9% 10%;
@@ -34,6 +36,9 @@
     --ring: 240 10% 3.9%;
 
     --radius: 1.5rem;
+
+    --hover: 216, 69%, 10%;
+    
   }
 
   .dark {

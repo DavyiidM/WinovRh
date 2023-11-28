@@ -5,6 +5,9 @@ import { useCandidate } from '@/services/candidates';
 import { useToast } from 'vue-toastification';
 import { Card, CardTitle, CardDescription } from "@/components/ui/card";
 import { AspectRatio } from '@/components/ui/aspect-ratio'
+import Header from '@/components/dashboard/Header.vue'
+
+
 
 
 
@@ -25,14 +28,23 @@ onMounted(async () => {
 </script>
 
 <template>
+
+    <div class=" flex justify-center ">
+        <Header title="Candidato(a):   ">
+        </Header>
+    </div>
+
     <div class="flex justify-center gap-10">
         <div class="max-w-md w-full">
             <Card>
                 <div class="p-4 space-y-4">
                     <div class="text-2xl font-bold" v-if="candidate">{{ candidate.name }}</div>
-                    <div class="text-gray-600" v-if="candidate"><span class="text-2x1 font-bold">E-mail: </span>{{ candidate.email }}</div>
-                    <div class="text-gray-600" v-if="candidate"><span class="text-2x1 font-bold">Linkedin: </span>{{ candidate.linkedin }}</div>
-                    <div class="text-gray-600" v-if="candidate"><span class="text-2x1 font-bold">Github: </span>{{ candidate.github }}</div>
+                    <div class="text-gray-600" v-if="candidate"><span class="text-2x1 font-bold">E-mail: </span>{{
+                        candidate.email }}</div>
+                    <div class="text-gray-600" v-if="candidate"><span class="text-2x1 font-bold">Linkedin: </span>{{
+                        candidate.linkedin }}</div>
+                    <div class="text-gray-600" v-if="candidate"><span class="text-2x1 font-bold">Github: </span>{{
+                        candidate.github }}</div>
                 </div>
             </Card>
         </div>
@@ -44,10 +56,6 @@ onMounted(async () => {
                 </AspectRatio>
             </Card>
         </div>
-
-
-
-
     </div>
 </template>
 
