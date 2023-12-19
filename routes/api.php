@@ -14,6 +14,16 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+Route::middleware('auth:sanctum')->group(function () {
+    Route::get('/user', function (Request $request) {
+        return $request->user();
+    });
+
+    // Outras rotas protegidas por sanctum...
+    require __DIR__.'/recruiters.php';
 });
+
+Route::post('/login', ['uses'=>'App\Http\Controllers\Auth\AdminLoginController@login']);
+Route::get('/login', ['uses'=>'App\Http\Controllers\Auth\AdminLoginController@validateLogin']);
+
+// Outras rotas de autenticação...

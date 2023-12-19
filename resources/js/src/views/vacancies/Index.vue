@@ -62,20 +62,9 @@ const toast = useToast()
 const drawerEl = ref(null)
 
 const storeVacancy = async (params) => {
-  try {
-    formData.value.title = params.title
-    formData.value.subtitle = params.subtitle
-    formData.value.description = params.description
-    formData.value.expires_at = params.expires_at
-    await store()
-    vacancies.value.push(vacancy.value)
-    vacancy.value = null
-    drawerEl.value.toggle()
-    toast.success('Vaga Cadastrada com Sucesso.')
-  } catch (e) {
-    toast.error('Opsss... Erro ao cadastrar esta Vaga')
-  }
+  window.location.href = '/admin/register';
 }
+
 
 onMounted(async () => {
   await getVacancies()
@@ -88,9 +77,8 @@ onMounted(async () => {
 <template>
   <div class="">
     <Header title="Vagas">
-      
       <template #options>
-        <DrawerStoreVacancy :categories="categories" ref="drawerEl" @submit="storeVacancy" />
+        <Button class="w-full" @click="storeVacancy">Adicionar nova vaga</Button>
       </template>
     </Header>
     <div class="mt-4 grid grid-cols-12 gap-4">
