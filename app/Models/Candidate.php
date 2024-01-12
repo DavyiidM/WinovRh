@@ -23,6 +23,8 @@ class Candidate extends Authenticatable
         'password',
         'linkedin',
         'github',
+        'phone',
+        'resume', 
     ];
 
     /**
@@ -51,15 +53,15 @@ class Candidate extends Authenticatable
         'github' => null,
     ];
 
-    public function resume()
-    {
-        return $this->hasOne(Resume::class)->latestOfMany();
-    }
+    // public function resume()
+    // {
+    //     return $this->hasOne(Resume::class)->latestOfMany();
+    // }
 
-    public function resumes()
-    {
-        return $this->hasMany(Resume::class);
-    }
+    // public function resumes()
+    // {
+    //     return $this->hasMany(Resume::class);
+    // }
 
     public function vacancies()
     {
@@ -67,8 +69,8 @@ class Candidate extends Authenticatable
             ->orderBy('vacancy_candidates.created_at', 'desc');
     }
 
-    public function telephones()
-    {
-        return $this->belongsToMany(Telephone::class, 'candidate_telephones');
-    }
+    // public function telephones()
+    // {
+    //     return $this->belongsToMany(Telephone::class, 'candidate_telephones');
+    // }
 }

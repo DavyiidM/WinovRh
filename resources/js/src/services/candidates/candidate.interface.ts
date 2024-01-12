@@ -6,6 +6,8 @@ export default interface CandidateInterface {
     email:string,
     linkedin:string,
     github:string,
+    phone:string,
+    resume:string,
     created_at: string,
     vacancies: VacancyInterface[]
 }

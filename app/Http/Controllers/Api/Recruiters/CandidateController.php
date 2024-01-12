@@ -36,5 +36,18 @@ class CandidateController extends Controller
 
         return (new CandidateResource($candidate))->response();
     }
+
+    public function store(Request $request)
+    {
+        // $data = $request->validate([
+        //     'name' => 'required',
+        //     'email' => 'required|email'
+        // ]);
+        $data = $request->all();
+
+        $candidate = Candidate::create($data);
+
+        return response()->json($candidate, 201);
+    }
     
 }

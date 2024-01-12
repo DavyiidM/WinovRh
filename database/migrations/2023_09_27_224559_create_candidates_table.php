@@ -18,6 +18,8 @@ return new class extends Migration {
             $table->string('password')->nullable();
             $table->string('linkedin')->nullable();
             $table->string('github')->nullable();
+            $table->string('phone')->nullable();
+            $table->string('resume')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

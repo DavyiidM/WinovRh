@@ -24,6 +24,7 @@ Route::middleware('auth:sanctum')->group(function () {
 });
 
 Route::post('/login', ['uses'=>'App\Http\Controllers\Auth\AdminLoginController@login']);
+Route::post('/subscribe', ['uses'=>'App\Http\Controllers\Api\Recruiters\CandidateController@store']);
 Route::get('/login', ['uses'=>'App\Http\Controllers\Auth\AdminLoginController@validateLogin']);
 
 // Outras rotas de autenticação...

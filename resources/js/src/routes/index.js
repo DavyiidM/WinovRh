@@ -7,8 +7,12 @@ import VacancyIndex from '@/views/vacancies/Index.vue'
 import CandidatesIndex from '@/views/candidates/Index.vue'
 import CandidatesShow from '@/views/candidates/Show.vue'
 import Register from '@/views/vacancies/Register.vue';
-import Teste from '@/views/vacancies/Teste.vue';
+import VacanciesShow from '@/views/vacancies/Show.vue';
 import Login from '@/views/login/Login.vue';
+import Candidature from '@/views/candidature/Candidature.vue';
+import Subscribe from '@/views/subscribe/Subscribe.vue'
+import Obrigado from '@/views/obrigado/Obrigado.vue'
+
 
 
 
@@ -69,9 +73,9 @@ const routes = [
         component: Register,
       },
       {
-        path: '/admin/teste',
-        name: 'admin.vacancies.teste',
-        component: Teste,
+        path: '/admin/show',
+        name: 'admin.vacancies.show',
+        component: VacanciesShow,
       }
     ],
     
@@ -82,6 +86,21 @@ const routes = [
     path: '/login',
     name: 'login.index',
     component: Login,
+  },
+  {
+    path: '/candidature',
+    name: 'candidature.index',
+    component: Candidature,
+  },
+  {
+    path: '/subscribe',
+    name: 'subscribe.index',
+    component: Subscribe,
+  },
+  {
+    path: '/obrigado',
+    name: 'obrigado.index',
+    component: Obrigado,
   },
 ];
 

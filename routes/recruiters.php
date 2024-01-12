@@ -14,6 +14,7 @@ Route::prefix('recruiters')->as('recruiters.')->group(function () {
     ->only([
         'index',
         'show',
+        
     ]);
 
     // Vagas
