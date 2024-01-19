@@ -12,6 +12,7 @@ import Login from '@/views/login/Login.vue';
 import Candidature from '@/views/candidature/Candidature.vue';
 import Subscribe from '@/views/subscribe/Subscribe.vue'
 import Obrigado from '@/views/obrigado/Obrigado.vue'
+import ShowCard from '@/views/candidature/showcard/ShowCard.vue'
 
 
 
@@ -73,10 +74,11 @@ const routes = [
         component: Register,
       },
       {
-        path: '/admin/show',
+        path: '/admin/show', 
         name: 'admin.vacancies.show',
         component: VacanciesShow,
       }
+      
     ],
     
 
@@ -91,6 +93,11 @@ const routes = [
     path: '/candidature',
     name: 'candidature.index',
     component: Candidature,
+  },
+  {
+    path: '/candidature/showcard/:title/:name/:description',
+    name: 'ShowCard.index',
+    component: ShowCard,
   },
   {
     path: '/subscribe',

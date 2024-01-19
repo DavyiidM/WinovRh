@@ -8,6 +8,9 @@ use App\Models\Candidate;
 use Illuminate\Http\Request;
 use App\Http\Resources\CandidateResource;
 use Spatie\QueryBuilder\QueryBuilder;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Http\Response;
 
 class CandidateController extends Controller
 {
@@ -32,22 +35,56 @@ class CandidateController extends Controller
      */
     public function show(string $id)
     {
-        $candidate = Candidate::findOr($id, fn() => throw new NotFoundException('Resource not Found'));
+        $candidate = Candidate::findOr($id, fn () => throw new NotFoundException('Resource not Found'));
 
         return (new CandidateResource($candidate))->response();
     }
 
+
     public function store(Request $request)
     {
-        // $data = $request->validate([
-        //     'name' => 'required',
-        //     'email' => 'required|email'
-        // ]);
+        $data = $request->validate([
+            'name' => 'required',
+            'email' => 'required|email',
+            'phone' => 'required',
+        ]);
+
+        $validator = Validator::make($request->all(), [
+            'resume' => 'required|mimes:pdf|max:4096',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json(['success' => false, 'message' => $validator->errors()->first()]);
+        }
+
         $data = $request->all();
+
+        if ($request->hasFile('resume')) {
+            $file = $request->file('resume');
+            $fileName = time() . '_' . $file->getClientOriginalName();
+
+            $file->storeAs('public', $fileName);
+        }
+
+        $data['resume'] = $fileName;
 
         $candidate = Candidate::create($data);
 
         return response()->json($candidate, 201);
     }
-    
+
+    public function viewResume($filename)
+    {
+        $path = storage_path('app/public/' . $filename);
+
+        if (!Storage::exists("public/{$filename}")) {
+            abort(404);
+        }
+
+        $file = Storage::get("public/{$filename}");
+        $type = Storage::mimeType("public/{$filename}");
+
+        return (new Response($file, 200))
+            ->header('Content-Type', $type);
+    }
 }

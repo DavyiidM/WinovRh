@@ -46,9 +46,14 @@ onMounted(async () => {
       <div class="col-span-12 md:col-span-6 lg:col-span-4" v-for="c in candidates" :key="c">
         <Card class="p-6">
           <div class="flex justify-between align-start">
-          <CardTitle class="lg:text-lg text-sm">
+          <CardTitle class="lg:text-lg text-7x1">
             <router-link :to="{name:'admin.candidates.show', params:{uuid:c.id}}">
             {{ c.name }}</router-link>
+            <div>
+              <router-link :to="{name:'admin.candidates.show', params:{uuid:c.id}}">
+            {{ c.vacancies }}</router-link>
+            </div>
+            
           </CardTitle>
           
         </div>

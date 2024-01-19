@@ -6,7 +6,6 @@ import { Card, CardTitle, CardDescription } from "@/components/ui/card";
 import { Pagination } from '@/components/ui/pagination'
 import { Button } from '@/components/ui/button';
 
-import { Dialog, DialogContent, DialogTitle, DialogFooter, } from "@/components/ui/dialog";
 import {
   Select,
   SelectContent,
@@ -37,7 +36,6 @@ const { store, formData, vacancy } = storeService()
 
 const toast = useToast()
 
-const drawerEl = ref(null)
 const showDetails = ref(false);
 const selectedVacancy = ref({});
 
@@ -79,7 +77,7 @@ onMounted(async () => {
 
             <!-- Adicione a lógica para exibir detalhes aqui -->
             <router-link :to="{ name: 'admin.vacancies.show', params: { uuid: c.uuid } }"
-              class="text-blue-500 cursor-pointer">
+              class="text-green-500 cursor-pointer">
               Visualizar a Vaga
             </router-link>
           </Card>
@@ -112,13 +110,10 @@ onMounted(async () => {
 <style scoped>
 .details-popup {
   max-height: 80vh;
-  /* Define a altura máxima para 80% da altura da viewport */
   overflow-y: auto;
-  /* Adiciona uma barra de rolagem vertical se o conteúdo ultrapassar a altura máxima */
 }
 
 .details-container {
   padding: 20px;
-  /* Adiciona algum espaço em volta do conteúdo para evitar que ele fique muito próximo às bordas */
 }
 </style>

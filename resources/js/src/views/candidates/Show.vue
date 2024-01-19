@@ -4,12 +4,8 @@ import { useRoute, useRouter } from 'vue-router';
 import { useCandidate } from '@/services/candidates';
 import { useToast } from 'vue-toastification';
 import { Card, CardTitle, CardDescription } from "@/components/ui/card";
-import { AspectRatio } from '@/components/ui/aspect-ratio'
-import Header from '@/components/dashboard/Header.vue'
-
-
-
-
+import { AspectRatio } from '@/components/ui/aspect-ratio';
+import Header from '@/components/dashboard/Header.vue';
 
 
 const route = useRoute()
@@ -28,7 +24,6 @@ onMounted(async () => {
 </script>
 
 <template>
-
     <div class=" flex justify-center ">
         <Header title="Candidato(a):   ">
         </Header>
@@ -41,6 +36,8 @@ onMounted(async () => {
                     <div class="text-2xl font-bold" v-if="candidate">{{ candidate.name }}</div>
                     <div class="text-gray-600" v-if="candidate"><span class="text-2x1 font-bold">E-mail: </span>{{
                         candidate.email }}</div>
+                        <div class="text-gray-600" v-if="candidate"><span class="text-2x1 font-bold">Telefone:</span>{{
+                        candidate.phone }}</div>
                     <div class="text-gray-600" v-if="candidate"><span class="text-2x1 font-bold">Linkedin: </span>{{
                         candidate.linkedin }}</div>
                     <div class="text-gray-600" v-if="candidate"><span class="text-2x1 font-bold">Github: </span>{{
@@ -52,8 +49,12 @@ onMounted(async () => {
             <Card class="p-4 space-y-4">
                 <div class="text-2xl font-bold">Currículo</div>
                 <AspectRatio :ratio="16 / 9">
-                    <img src="@/imagens/curri.png" alt="Image" class="rounded-md object-cover">
+                
+                    <iframe v-if="candidate" :src="candidate.resume" width="100%" height="500px"></iframe>
+                    
                 </AspectRatio>
+                
+
             </Card>
         </div>
     </div>

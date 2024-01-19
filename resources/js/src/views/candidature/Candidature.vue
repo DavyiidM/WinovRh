@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="flex flex-col min-h-screen">
     <Header />
     <MainContent />
     <Footer />
@@ -21,11 +21,20 @@ export default {
 </script>
 
 <style scoped>
-/* Adicione estilos específicos da página aqui, se necessário */
+/* Defina a altura mínima da tela para ocupar pelo menos toda a tela */
+.min-h-screen {
+  min-height: 100vh;
+}
+
+/* Adicione um espaçamento automático para empurrar o conteúdo para cima */
+.flex {
+  flex: 1;
+}
+
+/* Estilos específicos para o Footer */
+.Footer {
+  margin-top: auto; /* Empurra o Footer para o final da página */
+  padding: 20px; /* Ajuste a quantidade de padding conforme necessário */
+  background-color: #f0f0f0; /* Cor de fundo do Footer */
+}
 </style>
-
-  
-
-  
-
-   

@@ -10,7 +10,7 @@
   
         <!-- Botões de Navegação -->
         <div class="flex justify-center space-x-4">
-          <button @click="returnToSite" class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-400 focus:outline-none focus:border-blue-300">
+          <button @click="returnToSite" class="bg-green-500 text-white px-4 py-2 rounded-md hover:bg-green-400 focus:outline-none focus:border-blue-300">
             Retornar ao Site
           </button>
           <button @click="returnToVagas" class="bg-green-500 text-white px-4 py-2 rounded-md hover:bg-green-400 focus:outline-none focus:border-blue-300">

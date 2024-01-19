@@ -7,7 +7,7 @@ import axios from '@/plugins/axios.js'
 
 
 export default {
-  // props: ['vacancies'],
+  
   components: {
     Card,
   },
@@ -19,9 +19,9 @@ export default {
   mounted() {
     // Substitua 'sua_url_get_aqui' pela URL da sua API
     axios.get('/recruiters/vacancies?')
-    .then((response) => {
-      this.vacancies = response.data.data;
-    }).catch(err => console.log(err))
+      .then((response) => {
+        this.vacancies = response.data.data;
+      }).catch(err => console.log(err))
   },
 
 
@@ -30,12 +30,22 @@ export default {
 <template>
   <div>
     <!-- Seção da imagem de fundo com parallax -->
-    <section class="parallax-section">
-      <div class="parallax-image"></div>
-      <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-white text-center">
-        <h2 class="text-6xl font-bold mb-4">Tá preparado ?!!</h2>
-      </div>
-    </section>
+    <section class="parallax-section relative">
+  <div class="parallax-image"></div>
+  <div class="absolute top-1/2 left-0 transform -translate-y-1/2 text-white text-left px-8">
+    <h1 class="text-4xl font-bold mb-4 lg:w-96">
+      O que acontece se juntar o seu potencial com o nosso?
+    </h1>
+    <h2 class="text-lg lg:w-96">
+      Descubra como contribuímos para que nossos winovers cresçam inspirados e inspirando os outros
+    </h2>
+  </div>
+</section>
+
+
+
+
+
 
     <!-- Seção de Cards -->
     <section class="bg-main-color p-8">
@@ -65,7 +75,7 @@ export default {
 .parallax-image {
   width: 100%;
   height: 100%;
-  background-image: url('https://viajandoparaorlando.com/wp-content/uploads/2019/12/Star-Wars-Rise-of-the-Resistance-Disneys-Hollywood-Studios-Photo-15-1024x683.jpg');
+  background-image: url('https://winov.com.br/wp-content/uploads/2024/01/img_trabalhe_conosco@2x.png');
   background-size: cover;
   background-attachment: fixed;
 }

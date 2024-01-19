@@ -18,7 +18,12 @@ Route::prefix('recruiters')->as('recruiters.')->group(function () {
     ]);
 
     // Vagas
-    Route::apiResource('vacancies', \App\Http\Controllers\Api\Recruiters\VacancyController::class);
+    Route::apiResource('vacancies', \App\Http\Controllers\Api\Recruiters\VacancyController::class)  ->only([
+        'index',
+        'show',
+        
+    ]);
+
 
     Route::apiResource('vacancies/{vacancy}/categories', \App\Http\Controllers\Api\Recruiters\VacancyCategoryController::class)
         ->only([

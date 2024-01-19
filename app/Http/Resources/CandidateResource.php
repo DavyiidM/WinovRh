@@ -23,9 +23,11 @@ class CandidateResource extends JsonResource
                 fn()=>[]
             ),
             'email' => $this->email,
+            'phone' => $this->phone,
             'password' => $this->password,
             'linkedin' => $this->linkedin, 
             'github' => $this->github,
+            'resume' => '/api/pdf/view/'. $this->resume,
         ];
     }
 }
