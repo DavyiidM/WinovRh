@@ -1,66 +1,45 @@
 <script setup lang="ts">
 import { onMounted, ref } from 'vue'
+import { useRouter } from 'vue-router'
 import Header from '@/components/dashboard/Header.vue'
 import { useVacancy } from '@/services/vacancies'
 import { Card, CardTitle, CardDescription } from "@/components/ui/card";
 import { Pagination } from '@/components/ui/pagination'
 import { Button } from '@/components/ui/button';
-
-import {
-  Select,
-  SelectContent,
-
-  SelectItem,
-
-  SelectTrigger,
-  SelectValue,
-} from '@/components/ui/select'
-
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { useToast } from 'vue-toastification'
 import { Switch } from '@/components/ui/switch'
-
 import { useCategory } from '@/services/categories'
 
-
 const { index: indexCategories } = useCategory()
-
 const { categories, getCategories, perPage: perPageCategories } = indexCategories()
-
 perPageCategories.value = 1000
 
 const { index, store: storeService } = useVacancy()
-
 const { vacancies, getVacancies, meta, currentPage, perPage, perPageOptions } = index()
-
 const { store, formData, vacancy } = storeService()
 
 const toast = useToast()
+const router = useRouter()
 
-const showDetails = ref(false);
-const selectedVacancy = ref({});
+const showDetails = ref(false)
+const selectedVacancy = ref({})
 
 const storeVacancy = async (params) => {
-  window.location.href = '/admin/register';
-};
-
-const viewDetails = (vacancy) => {
-  console.log('Detalhes da Vaga:', vacancy);
-  // Implemente a lógica para exibir os detalhes conforme necessário.
-  selectedVacancy.value = vacancy;
-  showDetails.value = true;
-};
+  router.push('/admin/register')
+}
 
 onMounted(async () => {
   await getVacancies()
   await getCategories()
-
   console.log({ categories: categories.value })
 })
 
 </script>
+
 <template>
   <div class="details-container">
-    <div class="">
+    <div>
       <Header title="Vagas">
         <template #options>
           <Button class="w-full" @click="storeVacancy">Adicionar nova vaga</Button>
@@ -74,11 +53,8 @@ onMounted(async () => {
               <Switch class="" />
             </div>
             <CardDescription class="lg:text-lg text-sm">{{ c.subtitle }}</CardDescription>
-
-            <!-- Adicione a lógica para exibir detalhes aqui -->
-            <router-link :to="{ name: 'admin.vacancies.show', params: { uuid: c.uuid } }"
-              class="text-green-500 cursor-pointer">
-              Visualizar a Vaga
+            <router-link :to="{ name: 'admin.vacancies.show', params: { uuid: c.uuid } }">
+                Visualizar a Vaga
             </router-link>
           </Card>
         </div>

@@ -3,6 +3,7 @@ import { onMounted, ref, watch } from 'vue'
 import VacancyInterface from "./vacancy.interface";
 
 
+
 export default function (): Object {
     const vacancies = ref<VacancyInterface[] | null>(null)
     const meta = ref()

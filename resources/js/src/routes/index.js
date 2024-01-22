@@ -74,10 +74,11 @@ const routes = [
         component: Register,
       },
       {
-        path: '/admin/show', 
+        path: '/vagas/show/:uuid',
         name: 'admin.vacancies.show',
         component: VacanciesShow,
       }
+      
       
     ],
     

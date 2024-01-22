@@ -1,6 +1,6 @@
 // useVacancy.js
 import axios from '@/plugins/axios.js'
-import { ref } from 'vue'
+import { onMounted, ref } from 'vue'
 import VacancyInterface from "./vacancy.interface";
 
 export default function () {
