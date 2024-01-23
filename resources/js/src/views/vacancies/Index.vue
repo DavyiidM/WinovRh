@@ -32,7 +32,7 @@ const storeVacancy = async (params) => {
 onMounted(async () => {
   await getVacancies()
   await getCategories()
-  console.log({ categories: categories.value })
+  console.log({ vacancies })
 })
 
 </script>
@@ -53,7 +53,7 @@ onMounted(async () => {
               <Switch class="" />
             </div>
             <CardDescription class="lg:text-lg text-sm">{{ c.subtitle }}</CardDescription>
-            <router-link :to="{ name: 'admin.vacancies.show', params: { uuid: c.uuid } }">
+            <router-link :to="{ name: 'admin.vacancies.show', params: { id: c.id } }">
                 Visualizar a Vaga
             </router-link>
           </Card>

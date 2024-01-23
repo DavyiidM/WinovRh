@@ -56,6 +56,7 @@ const routes = [
         path: 'vagas',
         name: 'admin.vacancies.index',
         component: VacancyIndex,
+        props: true,
       },
       {
         path: 'candidatos',
@@ -74,7 +75,7 @@ const routes = [
         component: Register,
       },
       {
-        path: '/vagas/show/:uuid',
+        path: '/vagas/show/:id',
         name: 'admin.vacancies.show',
         component: VacanciesShow,
       }

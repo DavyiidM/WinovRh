@@ -6,9 +6,9 @@ import VacancyInterface from "./vacancy.interface";
 export default function () {
     const vacancy = ref<VacancyInterface | null>(null)
 
-    const show = async (uuid) => {
+    const show = async (id) => {
         try {
-            const response = await axios.get(`/recruiters/vacancies/${uuid}`);
+            const response = await axios.get(`/recruiters/vacancies/${id}`);
             vacancy.value = response.data.data;
             console.log(response.data);
             return response; // Retornar a resposta completa se necessário
