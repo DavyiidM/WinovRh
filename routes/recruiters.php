@@ -19,6 +19,7 @@ Route::prefix('recruiters')->as('recruiters.')->group(function () {
 
     // Vagas
     Route::apiResource('vacancies', \App\Http\Controllers\Api\Recruiters\VacancyController::class)  ->only([
+        'store',
         'index',
         'show',
         

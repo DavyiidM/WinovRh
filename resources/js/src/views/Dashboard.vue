@@ -29,13 +29,13 @@ onMounted(async () => {
 
     const responseCandidates = await axios.get('/recruiters/candidates?');
     const responseVacancies = await axios.get('/recruiters/vacancies?');
-    const responseSubscriptions = await axios.get('/');
-    const responseActiveVacancies = await axios.get('');
+    // const responseSubscriptions = await axios.get('/');
+    // const responseActiveVacancies = await axios.get('');
 
     totalCandidates.value = responseCandidates.data.meta.total;
     totalVacancies.value = responseVacancies.data.meta.total;
-    totalSubscriptions.value = responseSubscriptions.data.meta.total;
-    activeVacancies.value = responseActiveVacancies.data.meta.total;
+    // totalSubscriptions.value = responseSubscriptions.data.meta.total;
+    // activeVacancies.value = responseActiveVacancies.data.meta.total;
    
 
   } catch (error) {

@@ -20,6 +20,12 @@ import { useToast } from 'vue-toastification'
 
 import AppTextEditor from '@/components/ui/editor/AppTextEditor.vue';
 
+import Editor from 'primevue/editor';
+
+
+// const value = ref('');
+
+
 const { formData, store } = VacancyService();
 
 const { index: indexCategories } = useCategory()
@@ -47,8 +53,6 @@ const props = defineProps({
 
 const storeVacancy = async () => {
   try {
-    // console.log(e.target.title.value)
-    // console.log(data)
     await store()
     reset()
     toast.success('Vaga Cadastrada com Sucesso.')
@@ -94,12 +98,16 @@ onMounted(async () => {
         <Label>Data de expiração</Label>
         <Input type="text" name="expires_at" v-model="formData.expires_at" />
         <Label>Description</Label>
-        
-        <AppTextEditor  v-model="formData.description" :max-limit="10000" />
-        
-      </div>
 
-      <Button class="w-full" type="submit">Cadastrar</Button>
-    </form>
-  </div>
+        <!-- <AppTextEditor v-model="formData.description" :max-limit="10000" /> -->
+        <div class="card">
+          <Editor v-model="formData.description" editorStyle="height: 320px" :max-limit="10000" />
+
+        </div>
+
+        </div>
+
+        <Button class="w-full" type="submit">Cadastrar</Button>
+      </form>
+    </div>
 </template>
