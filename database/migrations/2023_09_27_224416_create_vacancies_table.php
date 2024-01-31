@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('slug');
             $table->string('subtitle')->nullable();
             $table->longText('description');
+            $table->boolean('status');
             $table->date('expires_at');
             $table->timestamps();
         });

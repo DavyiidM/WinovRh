@@ -27,7 +27,8 @@ Route::post('/login', ['uses'=>'App\Http\Controllers\Auth\AdminLoginController@l
 Route::post('/subscribe', ['uses'=>'App\Http\Controllers\Api\Recruiters\CandidateController@store']);
 Route::get('/pdf/view/{filename}', ['uses'=>'App\Http\Controllers\Api\Recruiters\CandidateController@viewResume']);
 Route::get('/login', ['uses'=>'App\Http\Controllers\Auth\AdminLoginController@validateLogin']);
-
+Route::post('/vacancies/{vacancy}/update-status', ['uses' => 'App\Http\Controllers\Api\Recruiters\VacancyController@updateStatus']);
+Route::get('/recruiters/vacancies-candidate', ['uses' => 'App\Http\Controllers\Api\Recruiters\VacancyController@indexCandidate']);
 
 
 // Outras rotas de autenticação...

@@ -21,7 +21,7 @@ class CategoryResource extends JsonResource
                 'vacancies',
                 fn() => VacancyResource::collection($this->vacancies)
             ),
-            'vacancies_count' => $this->whenCounted('vacancies', fn() => $this->vacancies_count),
+            'vacancies_count' => $this->vacancies->count(),
             'created_at' => $this->created_at
         ];
     }

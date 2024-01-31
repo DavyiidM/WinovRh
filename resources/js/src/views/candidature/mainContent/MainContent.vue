@@ -18,7 +18,7 @@ export default {
   },
   mounted() {
     // Substitua 'sua_url_get_aqui' pela URL da sua API
-    axios.get('/recruiters/vacancies?')
+    axios.get('/recruiters/vacancies-candidate')
       .then((response) => {
         this.vacancies = response.data.data;
       }).catch(err => console.log(err))

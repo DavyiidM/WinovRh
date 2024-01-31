@@ -19,8 +19,9 @@ class VacancyResource extends JsonResource
             'title' => $this->title,
             'description' => $this->description,
             'slug' => $this->slug,
-            'subtitle' => $this ->subtitle,
-            'expires_at'=> $this ->expires_at,
+            'subtitle' => $this->subtitle,
+            'expires_at'=> $this->expires_at,
+            'status'=> $this->status,
         ];
         
     }

@@ -50,16 +50,7 @@ onMounted(async () => {
                 </div>
             </Card>
         </div>
-        <!-- <div class="max-w-md w-full">
-            <Card class="p-4 space-y-4">
-            
-                
-                    
-                
-                
-
-            </Card>
-        </div> -->
+      
     </div>
 </template>
 

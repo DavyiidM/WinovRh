@@ -12,6 +12,7 @@ const toast = useToast();
 const { show } = useVacancy();
 const vacancy = ref({});
 
+const htmlContent = ref<string>('');
 onMounted(async () => {
   // Obtenha os detalhes da vaga ao iniciar a página
   await getVacancyDetails();
@@ -21,12 +22,14 @@ onMounted(async () => {
 const getVacancyDetails = async () => {
   try {
     const response = await axios.get(`/recruiters/vacancies/${route.params.id}`);
-    console.log(response);
+    htmlContent.value = response.data.data.description;
+    // console.log(response);
     vacancy.value = response.data.data; // Substitua isso com a estrutura real da resposta
   } catch (error) {
     console.error('Erro ao obter os detalhes da vaga', error);
   }
 };
+
 
 
 </script>
@@ -37,9 +40,7 @@ const getVacancyDetails = async () => {
       <h1 class="text-3xl font-bold mb-4">{{ vacancy.title }}</h1>
       <p class="text-base mb-4">{{ vacancy.subtitle }}</p>
     </div>
-    <div>
-      {{ vacancy.description }}
-    </div>
+    <div v-html="htmlContent"></div>
   </div>
 </template>
 

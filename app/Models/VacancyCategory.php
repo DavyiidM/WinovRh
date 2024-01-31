@@ -11,4 +11,20 @@ class VacancyCategory extends Model
 
     protected $guarded = [];
 
+    protected $fillable = [
+        'vacancy_id',
+        'category_id',
+    ];
+
+    public function vacancy()
+    {
+        return $this->belongsTo(Vacancy::class);
+    }
+
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
+    }
+
+
 }

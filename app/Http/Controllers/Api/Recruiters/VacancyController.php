@@ -9,6 +9,7 @@ use App\Http\Requests\StoreVacancyRequest;
 use App\Http\Requests\UpdateVacancyRequest;
 use App\Http\Resources\VacancyResource;
 use App\Models\Vacancy;
+use App\Models\VacancyCategory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Spatie\QueryBuilder\QueryBuilder;
@@ -21,9 +22,6 @@ class VacancyController extends Controller
     public function index()
     {
         $vacancies = QueryBuilder::for(Vacancy::class)
-        // ->withCount(['vacancies' => function ($vacancy) {
-        //     $vacancy->whereHas('status', fn($status) => $status->where('status', VacancyStatusEnum::OPEN));
-        // }])
             ->allowedIncludes([
                 'candidates',
                 'categories',
@@ -34,7 +32,25 @@ class VacancyController extends Controller
                 perPage: \request('per_page', 15),
                 page: \request('page', 1)
             )->appends(\request()->query());
-//dd($vacancies);
+        //dd($vacancies);
+        return VacancyResource::collection($vacancies)->response()->getData(true);
+    }
+
+    public function indexCandidate()
+    {
+        $vacancies = QueryBuilder::for(Vacancy::class)
+            ->where('status', true)
+            ->allowedIncludes([
+                'candidates',
+                'categories',
+                'recruiter',
+                'status',
+                'historic',
+            ])->paginate(
+                perPage: \request('per_page', 15),
+                page: \request('page', 1)
+            )->appends(\request()->query());
+        //dd($vacancies);
         return VacancyResource::collection($vacancies)->response()->getData(true);
     }
 
@@ -46,11 +62,29 @@ class VacancyController extends Controller
 
         $vacancy = Vacancy::create([
             ...$request->validated(),
-            'slug' => Str::slug($request->validated('title'))
+            'slug' => Str::slug($request->validated('title')),
+            'status' => true,
+        ]);
+
+        VacancyCategory::create([
+            'vacancy_id' => $vacancy->id,
+            'category_id' => $request->input('category_id')
         ]);
 
         return (new VacancyResource($vacancy))->response()->setStatusCode(201);
+    }
+    
+    public function updateStatus(Request $request, $id)
+    {
+        $vacancy = Vacancy::query()->findOr($id, fn () => throw new NotFoundException());
 
+        $vacancy->update([
+            'status'=>$request->input('status'),
+        ]);
+
+        $vacancy->refresh();
+
+        return (new VacancyResource($vacancy))->response();
     }
 
     /**
@@ -58,10 +92,9 @@ class VacancyController extends Controller
      */
     public function show(string $id)
     {
-        $vacancy = Vacancy::findOr($id, fn() => throw new NotFoundException());
+        $vacancy = Vacancy::findOr($id, fn () => throw new NotFoundException());
 
         return (new VacancyResource($vacancy))->response();
-
     }
 
     /**
@@ -69,11 +102,18 @@ class VacancyController extends Controller
      */
     public function update(UpdateVacancyRequest $request, string $id)
     {
-        $vacancy = Vacancy::query()->findOr($id, fn() => throw new NotFoundException());
+        $vacancy = Vacancy::query()->findOr($id, fn () => throw new NotFoundException());
 
         $vacancy->update($request->validated());
 
         $vacancy->refresh();
+
+        VacancyCategory::where('vacancy_id', $id)
+            ->update([
+                'category_id' => $request->input('category_id')
+            ]);
+
+
 
         return (new VacancyResource($vacancy))->response();
     }
@@ -85,7 +125,7 @@ class VacancyController extends Controller
     {
         $vacancy = Vacancy::query()
             ->whereDoesntHave('candidates')
-            ->findOr($id, fn() => throw new NotFoundException("Vacancy Not Found!"));
+            ->findOr($id, fn () => throw new NotFoundException("Vacancy Not Found!"));
 
         $vacancy->delete();
 

@@ -10,7 +10,7 @@ import {
   <div class="space-y-8">
     <div class="flex items-center">
       <Avatar class="h-9 w-9">
-        <AvatarImage src="/avatars/01.png" alt="Avatar" />
+        <AvatarImage src="https://winov.com.br/wp-content/uploads/2023/01/ic_group@2x.png" alt="Avatar" />
         <AvatarFallback>TC</AvatarFallback>
       </Avatar>
       <div class="ml-4 space-y-1">
@@ -27,7 +27,7 @@ import {
     </div>
     <div class="flex items-center">
       <Avatar class="flex h-9 w-9 items-center justify-center space-y-0 border">
-        <AvatarImage src="/avatars/02.png" alt="Avatar" />
+        <AvatarImage src="https://winov.com.br/wp-content/uploads/2023/01/ic_group@2x.png" alt="Avatar" />
         <AvatarFallback>RH</AvatarFallback>
       </Avatar>
       <div class="ml-4 space-y-1">
@@ -44,7 +44,7 @@ import {
     </div>
     <div class="flex items-center">
       <Avatar class="h-9 w-9">
-        <AvatarImage src="/avatars/03.png" alt="Avatar" />
+        <AvatarImage src="https://winov.com.br/wp-content/uploads/2023/01/ic_group@2x.png" alt="Avatar" />
         <AvatarFallback>CM</AvatarFallback>
       </Avatar>
       <div class="ml-4 space-y-1">
@@ -61,7 +61,7 @@ import {
     </div>
     <div class="flex items-center">
       <Avatar class="h-9 w-9">
-        <AvatarImage src="/avatars/04.png" alt="Avatar" />
+        <AvatarImage src="https://winov.com.br/wp-content/uploads/2023/01/ic_group@2x.png" alt="Avatar" />
         <AvatarFallback>CM</AvatarFallback>
       </Avatar>
       <div class="ml-4 space-y-1">
@@ -78,7 +78,7 @@ import {
     </div>
     <div class="flex items-center">
       <Avatar class="h-9 w-9">
-        <AvatarImage src="/avatars/05.png" alt="Avatar" />
+        <AvatarImage src="https://winov.com.br/wp-content/uploads/2023/01/ic_group@2x.png" alt="Avatar" />
         <AvatarFallback>TC</AvatarFallback>
       </Avatar>
       <div class="ml-4 space-y-1">

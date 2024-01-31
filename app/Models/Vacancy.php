@@ -14,6 +14,7 @@ class Vacancy extends Model
         'slug',
         'subtitle',
         'description',
+        'status',
         'expires_at',
     ];
 

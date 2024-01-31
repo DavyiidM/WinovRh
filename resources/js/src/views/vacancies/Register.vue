@@ -23,8 +23,6 @@ import AppTextEditor from '@/components/ui/editor/AppTextEditor.vue';
 import Editor from 'primevue/editor';
 
 
-// const value = ref('');
-
 
 const { formData, store } = VacancyService();
 

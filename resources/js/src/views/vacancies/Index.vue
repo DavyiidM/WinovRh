@@ -10,6 +10,8 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { useToast } from 'vue-toastification'
 import { Switch } from '@/components/ui/switch'
 import { useCategory } from '@/services/categories'
+import axios from '@/plugins/axios.js'
+
 
 const { index: indexCategories } = useCategory()
 const { categories, getCategories, perPage: perPageCategories } = indexCategories()
@@ -35,6 +37,20 @@ onMounted(async () => {
   console.log({ vacancies })
 })
 
+const handleChange = async (event, vacancyId) => {
+  try {
+    const status = event;
+    await axios.post(`vacancies/${vacancyId}/update-status`, { status });
+
+    // Handle the response from the backend if needed
+    // ...
+  } catch (error) {
+    console.error(error);
+    // Handle the error if needed
+    // ...
+  }
+}
+
 </script>
 
 <template>
@@ -50,11 +66,11 @@ onMounted(async () => {
           <Card class="p-6">
             <div class="flex justify-between align-start">
               <CardTitle class="lg:text-lg text-sm">{{ c.title }}</CardTitle>
-              <Switch class="" />
+              <Switch :checked="c.status" @update:checked="($events) => handleChange($events, c.id)" />
             </div>
             <CardDescription class="lg:text-lg text-sm">{{ c.subtitle }}</CardDescription>
             <router-link :to="{ name: 'admin.vacancies.show', params: { id: c.id } }">
-                Visualizar a Vaga
+              Visualizar a Vaga
             </router-link>
           </Card>
         </div>

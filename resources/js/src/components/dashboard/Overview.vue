@@ -25,7 +25,7 @@ const data = [
     <VisStackedBar
       :x="(d: Data, i: number) => i"
       :y="(d: Data) => d.total"
-      color="#41b883"
+      color="#92D322"
       :rounded-corners="4"
       :bar-padding="0.15"
     />
