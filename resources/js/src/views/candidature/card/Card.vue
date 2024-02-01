@@ -22,16 +22,19 @@ export default {
     title: String,
     name: String,
     description: String,
+    id: String,
   },
   methods: {
     viewJobDetails() {
       // Redirecionando para a página de detalhes da vaga com todas as informações
-      this.$router.push({ name: 'ShowCard.index', params: { title: this.title, name: this.name, description: this.description } });
+      sessionStorage.setItem("vacancy_id", this.id);
+      this.$router.push({ name: 'ShowCard.index', params: { title: this.title, name: this.name, description: this.description, id: this.id } });
     },
     subscribe() {
       // Lógica de inscrição aqui
-      console.log('Inscrição realizada!');
+      console.log('Inscrição realizadA!');
       // Redirecionar para a página de inscrição
+      sessionStorage.setItem("vacancy_id", this.id);
       this.$router.push({ name: 'subscribe.index' });
     },
   },

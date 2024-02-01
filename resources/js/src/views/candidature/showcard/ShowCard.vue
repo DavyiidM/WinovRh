@@ -30,6 +30,7 @@ export default {
   methods: {
     subscribe() {
       // Lógica de inscrição aqui
+      // sessionStorage.setItem("vacancy_id", $route.params.id);
       console.log('Inscrição realizada!');
       // Redirecionar para a página de inscrição
       this.$router.push({ name: 'subscribe.index' });

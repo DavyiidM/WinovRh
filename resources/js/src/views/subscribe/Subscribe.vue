@@ -44,7 +44,7 @@
                 </div>
 
                 <button type="submit"
-                    class="w-full bg-green-500 text-white p-2 rounded-md hover:bg-green-400 focus:outline-none focus:ring focus:border-blue-300">
+                    class="w-full bg-color text-white p-2 rounded-md hover:bg-color focus:outline-none focus:ring focus:border-blue-300">
                     Inscrever-se
                 </button>
             </form>
@@ -98,6 +98,7 @@ export default {
                 formData.append('linkedin', linkedin.value);
                 formData.append('github', github.value);
                 formData.append('resume', resume.value);
+                formData.append('vacancy_id', sessionStorage.getItem("vacancy_id"));
 
                 const response = await axios.post('/api/subscribe', formData);
                 if (response.success && response.success == false) {
@@ -144,5 +145,11 @@ export default {
 .bg-image {
     background-image: url('https://winov.com.br/wp-content/uploads/2023/08/Blog.png');
     background-size: cover;
+}
+.bg-color{
+    background-color: #6BBA05;
+}
+.bg-color:hover{
+    background-color: #92D322;
 }
 </style>

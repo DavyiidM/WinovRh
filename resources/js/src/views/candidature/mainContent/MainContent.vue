@@ -53,7 +53,7 @@ export default {
         <h2 class="text-3xl font-bold mb-6">VAGAS</h2>
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
           <!-- Cards do conteúdo -->
-          <Card v-for="c in vacancies" :key="c" :title="c.title" :name="c.title" :description="c.description" />
+          <Card v-for="c in vacancies" :key="c" :title="c.title" :name="c.title" :description="c.description" :id="c.id" />
         </div>
       </div>
     </section>

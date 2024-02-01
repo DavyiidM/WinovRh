@@ -54,7 +54,7 @@ const pageTotal = computed(() => {
       <PaginationFirst class="hidden lg:inline-flex"/>
 
         <PaginationListItem v-for="i in pageTotal" :key="i"
-                            class="w-9 h-9 border bg-color rounded  data-[selected]:bg-green-400 data-[selected]:text-green-100 hover:bg-white/10 transition focus-within:outline focus-within:outline-1 focus-within:outline-offset-1"
+                            class="w-9 h-9 border bg-color rounded  data-[selected]:bg-green-400 data-[selected]:text-green-100 hover:bg-white-100 transition focus-within:outline focus-within:outline-1 focus-within:outline-offset-1"
                             :value="i">
           {{ i }}
         </PaginationListItem>

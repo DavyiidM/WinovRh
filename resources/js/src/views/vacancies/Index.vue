@@ -13,6 +13,7 @@ import { useCategory } from '@/services/categories'
 import axios from '@/plugins/axios.js'
 
 
+
 const { index: indexCategories } = useCategory()
 const { categories, getCategories, perPage: perPageCategories } = indexCategories()
 perPageCategories.value = 1000
@@ -37,19 +38,32 @@ onMounted(async () => {
   console.log({ vacancies })
 })
 
-const handleChange = async (event, vacancyId) => {
+
+const handleChange = async (status, vacancyId) => {
   try {
-    const status = event;
     await axios.post(`vacancies/${vacancyId}/update-status`, { status });
+
+    if (status) {
+      toast.success('Esta vaga foi ativada com sucesso');
+    } else {
+      toast.success('Esta vaga foi desativada com sucesso');
+    }
 
     // Handle the response from the backend if needed
     // ...
   } catch (error) {
     console.error(error);
+
+    if (status) {
+      toast.error('Erro ao ativar a vaga');
+    } else {
+      toast.error('Erro ao desativar a vaga');
+    }
+
     // Handle the error if needed
     // ...
   }
-}
+};
 
 </script>
 

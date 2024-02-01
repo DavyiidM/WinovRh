@@ -7,6 +7,8 @@ use App\Http\Controllers\Controller;
 use App\Models\Candidate;
 use Illuminate\Http\Request;
 use App\Http\Resources\CandidateResource;
+use App\Models\Vacancy;
+use App\Models\VacancyCandidate;
 use Spatie\QueryBuilder\QueryBuilder;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
@@ -69,6 +71,11 @@ class CandidateController extends Controller
         $data['resume'] = $fileName;
 
         $candidate = Candidate::create($data);
+
+        VacancyCandidate::create([
+            'vacancy_id'=>$data['vacancy_id'],
+            'candidate_id'=>$candidate->id
+        ]);
 
         return response()->json($candidate, 201);
     }

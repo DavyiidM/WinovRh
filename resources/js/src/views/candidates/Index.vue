@@ -39,25 +39,27 @@ onMounted(async () => {
   <div class="">
     <Header title="Candidatos">
       <template #options>
-        
+
       </template>
     </Header>
     <div class="mt-4 grid grid-cols-12 gap-4">
       <div class="col-span-12 md:col-span-6 lg:col-span-4" v-for="c in candidates" :key="c">
         <Card class="p-6">
           <div class="flex justify-between align-start">
-          <CardTitle class="lg:text-lg text-7x1">
-            <router-link :to="{name:'admin.candidates.show', params:{uuid:c.id}}">
-            {{ c.name }}</router-link>
-            <div>
-              <router-link :to="{name:'admin.candidates.show', params:{uuid:c.id}}">
-            {{ c.vacancies }}</router-link>
-            </div>
-            
-          </CardTitle>
-          
-        </div>
-       
+            <CardTitle class="lg:text-lg text-7x1">
+              <router-link :to="{ name: 'admin.candidates.show', params: { uuid: c.id } }">
+                {{ c.name }}</router-link>
+              <!-- <div>
+                <router-link :to="{ name: 'admin.candidates.show', params: { uuid: c.id } }">
+                  {{ c.vacancies }}</router-link>
+              </div> -->
+              <div v-for="(vacancie, index) in c.vacancies" :key="index">
+                {{ vacancie.title + (index < c.vacancies.length - 1 ? ',' : '') }} </div>
+
+            </CardTitle>
+
+          </div>
+
         </Card>
       </div>
     </div>

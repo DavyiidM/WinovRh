@@ -11,4 +11,18 @@ class VacancyCandidate extends Model
 
     protected $guarded = [];
 
+    protected $fillable = [
+        'vacancy_id',
+        'candidate_id',
+    ];
+    public function vacancy()
+    {
+        return $this->belongsTo(Vacancy::class);
+    }
+    public function candidate()
+    {
+        return $this->belongsTo(Candidate::class);
+    }
+
+
 }

@@ -17,11 +17,12 @@ class CandidateResource extends JsonResource
         return [
             'id'=>$this->id,
             'name' => $this->name,
-            'vacancies' => $this->whenLoaded(
-                'vacancies',
-                fn() => VacancyResource::collection($this->vacancies),
-                fn()=>[]
-            ),
+            // 'vacancies' => $this->whenLoaded(
+            //     'vacancies',
+            //     fn() => VacancyResource::collection($this->vacancies),
+            //     fn()=>[]
+            // ),
+            'vacancies' => $this->vacancies,
             'email' => $this->email,
             'phone' => $this->phone,
             'password' => $this->password,
